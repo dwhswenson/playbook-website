@@ -1,0 +1,19 @@
+name: Run website tests
+description: Run common tests on a built website
+
+inputs:
+  site-directory:
+    description: The directory containing the built website
+    required: true
+  base-url:
+    description: The base URL of the website
+    required: true
+
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check links
+      uses: lycheeverse/lychee-action@v2
+      with:
+        args: --base ${{ inputs.base-url }} ${{ inputs.site-directory }}
